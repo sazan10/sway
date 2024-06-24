@@ -12,9 +12,15 @@ jobs:
       with:
         ref: cc342107690631cf1ff003fed0b1cdb072491c63
     - name: Install dependencies
-      run: sudo apt install glslang-tools libcairo2-dev libcap-dev libdbus-1-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc wayland tree wayland-protocols
+      run: sudo apt install wget glslang-tools libcairo2-dev libcap-dev libdbus-1-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree 
     - name: Clone wlroots repo
       run: |
         git clone https://gitlab.freedesktop.org/wlroots/wlroots.git subprojects/wlroots
+        wget https://gitlab.freedesktop.org/wayland/wayland-protocols/-/archive/1.35/wayland-protocols-1.35.tar.gz 
+        tar -xf wayland-protocols-1.35.tar.gz
+        cd wayland-protocols-1.35
         meson build/
-        ninja -C build/
+        ninja -C build/ install
+        cd ..
+        meson build/
+        ninja -C build/ install
