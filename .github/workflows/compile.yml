@@ -15,8 +15,9 @@ jobs:
       run: sudo apt install glslang-tools libcairo2-dev libcap-dev libdbus-1-dev libevdev-dev libgdk-pixbuf2.0-dev libinput-dev libjson-c-dev libpam0g-dev libpango1.0-dev libpcre2-dev libpixman-1-dev libsystemd-dev libvulkan-dev libwayland-dev libwayland-egl1 libwlroots-dev libxcb-ewmh-dev libxkbcommon-dev meson pkgconf scdoc tree wayland-protocols
     - name: Clone wlroots repo
       run: |
-        mkdir -p subprojects/wlroots
-        git clone https://gitlab.freedesktop.org/wlroots/wlroots.git subprojects/wlroots
+        mkdir -p subprojects
+        cd subprojects
+        git clone https://gitlab.freedesktop.org/wlroots/wlroots.git
     - name: Build C Code
       run: |
         meson build/
