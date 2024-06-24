@@ -20,7 +20,7 @@ jobs:
         tar -xf wayland-protocols-1.35.tar.gz
         cd wayland-protocols-1.35
         meson build/
-        ninja -C build/ install
+        sudo ninja -C build/ install
         cd ..
         meson build/
-        ninja -C build/ install
+        sudo ninja -C build/ install
